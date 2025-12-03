@@ -1,0 +1,146 @@
+/* ======================== */
+/* CONFIGURAÇÕES GERAIS     */
+/* ======================== */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #9be7ff url('fundo-icons.png');
+    background-size: 150px;
+}
+
+.container {
+    width: 1200px;
+    margin: auto;
+    padding: 20px 0;
+}
+
+
+header {
+    background: #ff3b0d;
+    padding: 15px 0;
+    color: #fff;
+}
+
+header .menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 1200px;
+    margin: auto;
+}
+
+.logo {
+    font-size: 32px;
+    font-family: "Brush Script MT", cursive;
+}
+
+nav a {
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-right a {
+    margin-left: 20px;
+}
+
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+}
+
+.card {
+    width: 47%;
+    margin: 1.5%;
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
+
+.card img {
+    width: 100%;
+}
+
+.card h3 {
+    margin: 10px;
+}
+
+.card p {
+    margin: 10px;
+    font-size: 14px;
+}
+
+.btn {
+    display: inline-block;
+    margin-left: 10px;
+    padding: 8px 15px;
+    background: #ff3b0d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.sidebar {
+    width: 350px;
+}
+
+.side-box {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.side-box img {
+    width: 40%;
+    border-radius: 5px;
+}
+
+.side-box h3 {
+    margin-top: 0;
+}
+
+
+
+.form-area {
+    width: 450px;
+    margin: 50px auto;
+    background: rgba(255,255,255,0.75);
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.form-area h1 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+button {
+    padding: 10px 20px;
+    background: #007bb8;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.btn-duo {
+    display: flex;
+    justify-content: space-between;
+}
