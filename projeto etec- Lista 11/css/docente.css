@@ -1,0 +1,595 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #0066FF;
+  --primary-dark: #0052CC;
+  --secondary: #00D9B8;
+  --accent: #FF6B35;
+  --dark: #0A0E27;
+  --text: #1A1A2E;
+  --text-light: #4A5568;
+  --bg: #FFFFFF;
+  --bg-light: #F0F6FF;
+  --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background: var(--bg);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =================== HEADER UNIVERSAL - PARA TODOS OS ARQUIVOS CSS =================== */
+
+/* SUBSTITUA A SEÇÃO .site-header EM TODOS OS SEUS ARQUIVOS CSS POR ESTE CÓDIGO */
+
+/* HEADER COM ANIMAÇÕES */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+   background: rgb(241, 240, 240);
+  backdrop-filter: none;
+  border-bottom: none;
+  box-shadow: none;
+  z-index: 1000;
+  transition: all 0.4s ease;
+  padding: 20px 0;
+}
+
+/* HEADER QUANDO ROLA A PÁGINA */
+.site-header.scrolled {
+  background: rgba(10, 14, 39, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 3px solid var(--primary);
+  padding: 15px 0;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.brand:hover {
+  transform: translateY(-3px);
+}
+
+/* LOGO COM BRILHO VERMELHO */
+.brand-logo {
+  position: relative;
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.logo-glow {
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.7) 0%, rgba(255, 50, 50, 0.5) 30%, transparent 70%);
+  filter: blur(20px);
+  animation: pulseGlow 3s ease-in-out infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.15); 
+  }
+}
+
+/* TEXTO DA MARCA COM GRADIENTE ANIMADO */
+.brand-text {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #ff6b6b, #f7d154, #4cd3c2, #5b5be7);
+  background-size: 250%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.15);
+  animation: gradientMove 8s ease infinite;
+  transition: all 0.3s ease;
+}
+
+/* QUANDO ROLA, O TEXTO FICA BRANCO */
+.site-header.scrolled .brand-text {
+  background: white;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: none;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0%; }
+  25% { background-position: 50%; }
+  50% { background-position: 100%; }
+  75% { background-position: 50%; }
+  100% { background-position: 0%; }
+}
+
+/* NAVEGAÇÃO */
+.site-nav ul {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.site-nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  font-size: 1.05rem;
+  position: relative;
+  transition: all 0.3s ease;
+  padding: 8px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Efeito de sublinhado */
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #ff6b6b, #f7d154, #4cd3c2, #5b5be7);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.site-nav a:hover::after,
+.site-nav a.active::after {
+  width: 100%;
+}
+
+.site-nav a:hover {
+  color: #4cd3c2;
+  transform: translateY(-2px);
+}
+
+.site-nav a.active {
+  color: #5b5be7;
+  font-weight: 700;
+}
+
+/* BOTÃO MENU MOBILE */
+.menu-toggle {
+  display: none;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-toggle i {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+.menu-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* QUANDO ROLA, BOTÃO FICA MAIS ESCURO */
+.site-header.scrolled .menu-toggle {
+  background: rgba(91, 91, 231, 0.2);
+  border-color: var(--primary);
+}
+
+/* RESPONSIVO */
+@media (max-width: 968px) {
+  .site-header {
+    padding: 15px 0;
+  }
+
+  .site-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(180deg, #5b5be7 0%, #4cd3c2 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 30px;
+    box-shadow: 4px 0 30px rgba(0, 0, 0, 0.3);
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+    z-index: 999;
+  }
+
+  .site-nav.open {
+    transform: translateX(0);
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .site-nav a {
+    font-size: 1.2rem;
+    text-shadow: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .brand-text {
+    font-size: 1.2rem;
+  }
+}
+
+/* OVERLAY ESCURO QUANDO MENU ABERTO */
+.site-nav::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+
+.site-nav.open::before {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* =================== FIM DO HEADER UNIVERSAL =================== */
+
+/* SEÇÃO DOCENTE */
+.section {
+  padding: 130px 0 80px;
+  background: var(--bg-light);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-light);
+}
+
+.teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+
+/* CARDS */
+.teacher-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.teacher-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(0, 102, 255, 0.15);
+  border-color: var(--primary);
+}
+
+/* IMAGEM COM FUNDO */
+.teacher-image {
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.15) 0%, rgba(118, 75, 162, 0.15) 100%);
+}
+
+.teacher-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+  z-index: 1;
+}
+
+.teacher-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.teacher-card:hover .teacher-image img {
+  transform: scale(1.05);
+}
+
+/* TEXTO DO CARD */
+.teacher-info {
+  padding: 2rem 2rem 2.5rem;
+  background: white;
+}
+
+.teacher-info h4 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.teacher-more {
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  background: rgba(0, 102, 255, 0.05);
+}
+
+.teacher-more:hover {
+  background: rgba(0, 102, 255, 0.1);
+  transform: translateX(5px);
+}
+
+/* CONTEÚDO OCULTO PARA O MODAL */
+.teacher-bio {
+  display: none;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.modal-content {
+  background: #ffffff;
+  width: 90%;
+  max-width: 700px;
+  max-height: 85vh;
+  padding: 35px 40px;
+  border-radius: 24px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  animation: modalFadeIn 0.3s ease;
+  overflow-y: auto;
+}
+
+.modal-content h3 {
+  color: var(--primary);
+  font-size: 1.8rem;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+
+.modal-content p {
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+.modal-content p strong {
+  color: var(--primary);
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 8px;
+  font-size: 1.15rem;
+}
+
+.modal-content p br {
+  margin-bottom: 8px;
+}
+
+.close {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  border: none;
+  background: rgba(0, 0, 0, 0.05);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close:hover {
+  background: rgba(255, 0, 0, 0.1);
+  transform: rotate(90deg);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+
+/* FOOTER */
+.site-footer {
+  background: var(--dark);
+  color: white;
+  padding: 80px 0 40px;
+  margin-top: 0;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+.footer-section h3 {
+  margin-bottom: 1.8rem;
+  font-size: 1.4rem;
+  color: white;
+}
+
+.footer-section p {
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section li {
+  margin-bottom: 1rem;
+}
+
+.footer-section a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-section a i {
+  width: 18px;
+  height: 18px;
+}
+
+.footer-section a:hover {
+  color: white;
+  transform: translateX(5px);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 35px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+}
+/* RESPONSIVO */
+@media (max-width: 968px) {
+  .section {
+    padding-top: 100px;
+  }
+
+  .teachers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teacher-image {
+    height: 450px;
+  }
+
+  .site-nav {
+    position: fixed;
+    top: 80px;
+    right: 0;
+    background: white;
+    width: 100%;
+    max-width: 320px;
+    padding: 2.5rem;
+    box-shadow: -4px 0 30px rgba(0, 0, 0, 0.15);
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    height: calc(100vh - 80px);
+  }
+
+  .site-nav.open {
+    transform: translateX(0);
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .section-title {
+    font-size: 2.2rem;
+  }
+
+  .modal-content {
+    padding: 25px;
+  }
+}
